@@ -36,15 +36,15 @@ class Solution(object):
             while j<m and haystack[i] == needle[j]:
                 i+= 1
                 j+=1
-                print i,j
+                print i,j,k
             if j>=m:
                 return k
             if not j or prefix[j-1]<0:
                 i = i+1 if i==k else i
                 k = i
+                print 'lalala',i,j,k
             else:
                 k = i - prefix[j-1]-1
-                i = k
-            if j:
-                j = prefix[j-1]
+                i -= 1
+            j = prefix[j-1] if j>0 and prefix[j-1]>=0 else 0
         return -1
