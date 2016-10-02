@@ -30,3 +30,37 @@ class Solution(object):
                 visited.append(0)
                 
         return inorder
+
+##SOLUTION 3: Morris Traversal
+class Solution(object):
+    def find_mostright(self, root):
+        if not root.left.right:
+            return root.left
+        else:
+            curparent = root.left
+            while curparent.right and curparent.right != root:
+                curparent = curparent.right
+            return curparent
+        
+        
+        
+    def inorderTraversal(self, root):
+        if not root:
+            return []
+        curnode = root
+        inorder = []
+        while curnode:
+            if not curnode.left: 
+                inorder.append(curnode.val)
+                curnode = curnode.right
+            else:
+                rightmost = self.find_mostright(curnode)
+                if rightmost.right == curnode:
+                    rightmost.right = None
+                    inorder.append(curnode.val)
+                    curnode = curnode.right
+                else:
+                    rightmost.right = curnode
+                    curnode = curnode.left
+        return inorder
+
