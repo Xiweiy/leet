@@ -1,4 +1,5 @@
 ##SOLUTION 1: Flatten in a single sorted list   ##162ms
+##time complexity is O(n^2 * log n), space complexity is O(n^2).
 class Solution(object):
     def kthSmallest(self, matrix, k):
         return sorted(n for row in matrix for n in row)[k-1]
@@ -16,3 +17,8 @@ class Solution(object):
             else:
                 hi = mid
         return lo
+
+##SOLUTION 3: Heap Merge - merge multiple sorted inputs into a single sorted output   239ms
+class Solution(object):
+    def kthSmallest(self, matrix, k):
+        return [x for i,x in enumerate(heapq.merge(*matrix)) if i == k-1][0]
