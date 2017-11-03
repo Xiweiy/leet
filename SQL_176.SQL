@@ -30,3 +30,22 @@ SELECT (
     ) AS A
     WHERE SRANK =2) AS SecondHighestSalary
 ;
+
+
+##SOLUTION 2: No need for UserDefinedVariable
+SELECT max(Salary) as SecondHighestSalary
+FROM Employee
+WHERE Salary < (SELECT max(Salary) FROM Employee)
+
+
+SELECT max(Salary) as SecondHighestSalary
+From Employee
+WHERE Salary not in (SELECT max(Salary) FROM Employee )
+
+Note: use max() can ensure returning null when it does not exist
+
+
+##SOLUTION 3: USE OFFSET
+select (
+  select distinct Salary from Employee order by Salary Desc limit 1 offset 1
+)as SecondHighestSalary
