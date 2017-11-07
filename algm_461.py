@@ -1,4 +1,4 @@
-##SOLUTION 1:
+##SOLUTION 1: BITWISE OPERATION    ##beat 69.34%
 class Solution(object):
     def calculate_sumbit(self, bitor):
         if bitor <2:
@@ -12,4 +12,7 @@ class Solution(object):
 
 
 
-##SOLUTION 2:
+##SOLUTION 2: BINARY STRING    ##beat 27.55%
+class Solution(object):
+    def hammingDistance(self, x, y):
+        return bin(x^y).count('1')
